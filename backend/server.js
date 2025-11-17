@@ -2,7 +2,7 @@ import express from "express";
 import mongoose from "mongoose";
 import cors from "cors";
 import dotenv from "dotenv";
-// import path from 'path';
+import path from 'path';
 
 import projectRoutes from "./routes/projectRoutes.js";
 import clientRoutes from "./routes/clientRoutes.js";
@@ -13,7 +13,7 @@ dotenv.config();
 
 const app = express();
 
-// const __dirname= path.resolve();
+const __dirname= path.resolve();
 // Middlewares
 app.use(cors());
 app.use(express.json());
@@ -24,11 +24,11 @@ app.use("/api/clients", clientRoutes);
 app.use("/api/contacts", contactRoutes);
 app.use("/api/subscribers", subscriberRoutes);
 
-// app.use(express.static(path.join(__dirname, '/frontend/dist')));
+app.use(express.static(path.join(__dirname, '/frontend/dist')));
 
-// app.get('/*', (req, res) => {
-//     res.sendFile(path.join(__dirname, 'frontend', 'dist', 'index.html'));
-//   })
+app.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname, 'frontend', 'dist', 'index.html'));
+  })
 
 
 
